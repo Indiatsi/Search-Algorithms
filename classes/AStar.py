@@ -2,13 +2,13 @@ from heapq import heappush as push, heappop as pop
 from itertools import count
 
 
-class GreedyTraverser:
+class ATraverser:
     # Constructor
     def __init__(self):
         self.explored = {}
         self.end_search = False
 
-    def greedy_path(self, G, source, target, heuristic='heuristics'):
+    def astar_path(self, G, source, target, heuristic='heuristics', weight='weight'):
         if source not in G or target not in G:
             raise ValueError('Either source', source,
                              'or target', target, 'is not in G')
@@ -65,7 +65,7 @@ class GreedyTraverser:
 
             for neighbor, w in G[curnode].items():
                 # !! WEIGHT IS SET AS STRING, SO TYPE CAST
-                ncost = dist + float(w.get(heuristic, 1))
+                ncost = dist + float(w.get(weight, 1))
                 # Check if not in queue and not explored
                 if neighbor not in enqueued and neighbor not in list(self.explored.keys()):
                     h = 0 if heuristic is None else G.node[neighbor][heuristic]

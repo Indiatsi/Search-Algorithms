@@ -8,7 +8,7 @@ Created on Mon Sep 23 06:57:23 2019
 
 import networkx as nx
 import matplotlib.pyplot as plt
-from classes.bfs import ATraverser
+from classes.AStar import ATraverser
 
 G = nx.Graph()
 nodes=["Karen","J6","Gitaru","J1","J4","J7","J9","J8","Loresho","Lavington","Kilimani","J2","J5","J11","J3","CBD","J12","Langata","J10","Donholm","ImaraDaima","J13","Kahawa","HillView","Kasarani","Parklands"]
@@ -109,7 +109,7 @@ node_heuristics = nx.get_node_attributes(G, 'heuristics')
 route_bfs = ATraverser()
 routes = route_bfs.astar_path(G,"Karen","ImaraDaima")
 print(route_bfs.explored)
-route_list = route_bfs.explored
+route_list = list(route_bfs.explored.keys())
 #color the nodes in the route_bfs
 node_col = ['darkturquoise' if not node in route_list else 'peru' for node in G.nodes()]
 peru_colored_edges = list(zip(route_list,route_list[1:]))
